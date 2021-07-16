@@ -13,7 +13,7 @@ locals {
 }
 
 # Network Configuration
-module "aws-network" {
+module "aws_network" {
   source = "github.com/cjmarling/module-aws-network"
 
   env_name              = local.env_name
@@ -35,10 +35,10 @@ module "aws-eks" {
   env_name           = local.env_name
   aws_region         = local.aws_region
   cluster_name       = local.k8s_cluster_name
-  vpc_id             = module.aws-network.vpc_id
-  cluster_subnet_ids = module.aws-network.subnet_ids
+  vpc_id             = module.aws_network.vpc_id
+  cluster_subnet_ids = module.aws_network.subnet_ids
 
-  nodegroup_subnet_ids     = module.aws-network.private_subnet_ids
+  nodegroup_subnet_ids     = module.aws_network.private_subnet_ids
   nodegroup_disk_size      = "20"
   nodegroup_instance_types = ["t3.medium"]
   nodegroup_desired_size   = 1
